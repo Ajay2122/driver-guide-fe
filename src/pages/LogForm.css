@@ -1,0 +1,240 @@
+.log-form-page {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.duty-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.duty-status-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: #F5F5F5;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.duty-status-item:hover {
+  border-color: #FF6600;
+  background: #FFF5EE;
+}
+
+.duty-status-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6600 0%, #E55A00 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.duty-status-form {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.duty-status-remove {
+  flex-shrink: 0;
+}
+
+.time-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-group {
+  flex: 1;
+  min-width: 100%;
+}
+
+.location-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.location-input-wrapper .form-input {
+  flex: 1;
+}
+
+.geocode-btn {
+  white-space: nowrap;
+  padding: 0.5rem 0.75rem;
+  min-width: fit-content;
+}
+
+.location-badge {
+  display: inline-block;
+  background: #4CAF50;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  margin-left: 0.5rem;
+  font-weight: 600;
+}
+
+.location-help {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #666666;
+  font-style: italic;
+}
+
+.time-input-group input {
+  width: 60px;
+  text-align: center;
+}
+
+.time-input-group span {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #1A1A1A;
+}
+
+.hours-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hours-item {
+  text-align: center;
+  padding: 1.5rem;
+  background: #F5F5F5;
+  border-radius: 8px;
+  border: 2px solid #E0E0E0;
+  transition: all 0.3s ease;
+}
+
+.hours-item:hover {
+  border-color: #FF6600;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hours-label {
+  font-size: 0.875rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.hours-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1A1A1A;
+}
+
+.compliance-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid;
+}
+
+.compliance-status.compliant {
+  background: #E8F5E9;
+  border-color: #4CAF50;
+  color: #2E7D32;
+}
+
+.compliance-status.violation {
+  background: #FFEBEE;
+  border-color: #F44336;
+  color: #C62828;
+}
+
+.compliance-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.compliance-status.compliant .compliance-icon {
+  background: #4CAF50;
+  color: white;
+}
+
+.compliance-status.violation .compliance-icon {
+  background: #F44336;
+  color: white;
+}
+
+.compliance-text {
+  flex: 1;
+}
+
+.compliance-text strong {
+  font-size: 1.125rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.violation-list {
+  margin: 0.5rem 0 0 1.5rem;
+  padding: 0;
+}
+
+.violation-list li {
+  margin-bottom: 0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .duty-status-item {
+    flex-direction: column;
+  }
+
+  .duty-status-form {
+    grid-template-columns: 1fr;
+  }
+
+  .hours-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+
+
+
+
+

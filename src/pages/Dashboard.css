@@ -1,0 +1,170 @@
+.dashboard {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.dashboard .table td:nth-child(6) {
+  white-space: nowrap;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+/* Compliance Chart */
+.compliance-chart {
+  padding: 1rem 0;
+}
+
+.compliance-bar {
+  height: 60px;
+  background: #F5F5F5;
+  border-radius: 8px;
+  display: flex;
+  overflow: hidden;
+  border: 2px solid #E0E0E0;
+  margin-bottom: 1rem;
+}
+
+.compliance-fill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.compliance-fill.compliant {
+  background: linear-gradient(135deg, #4CAF50 0%, #45A049 100%);
+}
+
+.compliance-fill.violation {
+  background: linear-gradient(135deg, #F44336 0%, #E53935 100%);
+}
+
+.compliance-label {
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.compliance-legend {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.compliance-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.compliance-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.compliance-legend-color.compliant {
+  background: #4CAF50;
+}
+
+.compliance-legend-color.violation {
+  background: #F44336;
+}
+
+/* Drivers Grid */
+.drivers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.driver-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #F5F5F5;
+  border-radius: 8px;
+  border: 2px solid #E0E0E0;
+  transition: all 0.3s ease;
+}
+
+.driver-card:hover {
+  border-color: #FF6600;
+  background: #FFF5EE;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.driver-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6600 0%, #E55A00 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.driver-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.driver-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.125rem;
+  color: #1A1A1A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.driver-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+.driver-terminal {
+  font-size: 0.75rem !important;
+  color: #999999 !important;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .drivers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .compliance-legend {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+
+
+
+

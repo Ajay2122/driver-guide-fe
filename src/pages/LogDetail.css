@@ -1,0 +1,426 @@
+.log-detail-page {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.log-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.log-detail-header .page-title {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.log-detail-header .action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-item {
+  padding: 1rem;
+  background: #F5F5F5;
+  border-radius: 4px;
+  border-left: 4px solid #FF6600;
+}
+
+.info-label {
+  font-size: 0.875rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 1.125rem;
+  color: #1A1A1A;
+  font-weight: 500;
+}
+
+.hours-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.hours-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+}
+
+.hours-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hours-card.off-duty {
+  background: #E8F5E9;
+  border-color: #4CAF50;
+}
+
+.hours-card.sleeper {
+  background: #E3F2FD;
+  border-color: #2196F3;
+}
+
+.hours-card.driving {
+  background: #FFF3E0;
+  border-color: #FF6600;
+}
+
+.hours-card.on-duty {
+  background: #FFF8E1;
+  border-color: #FFC107;
+}
+
+.hours-card-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.hours-card-content {
+  flex: 1;
+}
+
+.hours-card-label {
+  font-size: 0.875rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.hours-card-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1A1A1A;
+  margin-bottom: 0.25rem;
+}
+
+.hours-card-detail {
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+.mileage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.mileage-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #F5F5F5;
+  border-radius: 8px;
+  border: 2px solid #E0E0E0;
+  transition: all 0.3s ease;
+}
+
+.mileage-item:hover {
+  border-color: #FF6600;
+  background: #FFF5EE;
+  transform: translateY(-2px);
+}
+
+.mileage-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.mileage-content {
+  flex: 1;
+}
+
+.mileage-label {
+  font-size: 0.875rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.mileage-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FF6600;
+}
+
+.status-timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.status-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #FF6600 0%, #E55A00 100%);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 3px solid #FF6600;
+  background: white;
+}
+
+.timeline-item.off-duty .timeline-marker {
+  background: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.timeline-item.sleeper .timeline-marker {
+  background: #2196F3;
+  border-color: #2196F3;
+}
+
+.timeline-item.driving .timeline-marker {
+  background: #FF6600;
+  border-color: #FF6600;
+}
+
+.timeline-item.on-duty .timeline-marker {
+  background: #FFC107;
+  border-color: #FFC107;
+}
+
+.timeline-content {
+  padding: 1rem;
+  background: #F5F5F5;
+  border-radius: 4px;
+  border-left: 3px solid #FF6600;
+}
+
+.timeline-item.off-duty .timeline-content {
+  border-left-color: #4CAF50;
+  background: #E8F5E9;
+}
+
+.timeline-item.sleeper .timeline-content {
+  border-left-color: #2196F3;
+  background: #E3F2FD;
+}
+
+.timeline-item.driving .timeline-content {
+  border-left-color: #FF6600;
+  background: #FFF3E0;
+}
+
+.timeline-item.on-duty .timeline-content {
+  border-left-color: #FFC107;
+  background: #FFF8E1;
+}
+
+.timeline-time {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1A1A1A;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-status {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-location {
+  font-size: 0.875rem;
+  color: #666666;
+  margin-top: 0.5rem;
+}
+
+.compliance-card {
+  border: 3px solid;
+}
+
+.compliance-card.compliant {
+  border-color: #4CAF50;
+}
+
+.compliance-card.violation {
+  border-color: #F44336;
+}
+
+.compliance-content {
+  padding: 1rem 0;
+}
+
+.compliance-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.compliance-message.success {
+  background: #E8F5E9;
+  color: #2E7D32;
+}
+
+.compliance-message.error {
+  background: #FFEBEE;
+  color: #C62828;
+}
+
+.compliance-message-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.compliance-message strong {
+  font-size: 1.25rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.compliance-message p {
+  margin: 0;
+}
+
+.violation-list {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+}
+
+.violation-list li {
+  margin-bottom: 0.25rem;
+}
+
+.remarks-content {
+  padding: 1rem;
+  background: #F5F5F5;
+  border-radius: 4px;
+  border-left: 4px solid #FF6600;
+  line-height: 1.8;
+  color: #1A1A1A;
+}
+
+.metadata-card {
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+}
+
+.metadata-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.metadata-item {
+  padding: 0.75rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.metadata-label {
+  font-size: 0.75rem;
+  color: #999999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.metadata-value {
+  font-size: 0.875rem;
+  color: #666666;
+  font-family: 'Courier New', monospace;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  body {
+    background: white;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .log-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .log-detail-header .action-buttons {
+    width: 100%;
+  }
+
+  .log-detail-header .action-buttons .btn {
+    flex: 1;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hours-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .mileage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metadata-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
