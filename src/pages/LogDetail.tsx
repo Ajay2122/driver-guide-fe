@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { api } from '../services/api';
 import { DailyLog } from '../types';
@@ -6,7 +6,7 @@ import { checkHOSCompliance, formatDuration } from '../utils/hoursCalculator';
 import LogGrid from '../components/LogGrid';
 import RouteMap from '../components/RouteMap';
 import './LogDetail.css';
-
+import { calculateDistance } from '../utils/gpsUtils';
 const LogDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -30,6 +30,18 @@ const LogDetail: React.FC = () => {
       setLoading(false);
     }
   };
+
+  // calculateDistance
+  // const todayTotal=useMemo(()=>{
+  //   return log?.dutyStatuses?.reduce((total,step,i)=>{
+  //     if(i<log?.dutyStatuses?.length-1 && step?.coordinates){
+  //       if(log?.dutyStatuses[i+1]?.coordinates){
+  //         total+=calculateDistance(step.coordinates,log.dutyStatuses[i+1].coordinates)
+  //       }
+  //     }
+  //     return total
+  //   },0)
+  // },[log])
 
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this log?')) {
@@ -202,7 +214,7 @@ const LogDetail: React.FC = () => {
       </div>
 
       {/* Mileage Information */}
-      <div className="card">
+      {/* <div className="card">
         <div className="card-header">🛣️ Mileage Information</div>
         <div className="mileage-grid">
           <div className="mileage-item">
@@ -220,7 +232,7 @@ const LogDetail: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Duty Status Details */}
       <div className="card">
@@ -235,10 +247,10 @@ const LogDetail: React.FC = () => {
                   {String(status.endHour).padStart(2, '0')}:{String(status.endMinute).padStart(2, '0')}
                 </div>
                 <div className="timeline-status">
-                  {status.status === 'off-duty' && '🏠 Off Duty'}
+                  {status.status === 'off-duty' && `🏠 Off Duty` }
                   {status.status === 'sleeper' && '🛌 Sleeper Berth'}
                   {status.status === 'driving' && '🚛 Driving'}
-                  {status.status === 'on-duty' && '⚙️ On-Duty (Not Driving)'}
+                  {status.status === 'on-duty' && `⚙️ On-Duty (Not Driving) ${status.duty_summary ? "| " + status.duty_summary : ""}`}
                 </div>
                 {status.location && (
                   <div className="timeline-location">📍 {status.location}</div>

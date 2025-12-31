@@ -130,7 +130,7 @@ const LogList: React.FC = () => {
       </h1>
 
       {/* Filters */}
-      <div className="card">
+      {/* <div className="card">
         <div className="card-header">
           🔍 Filters
           <button onClick={clearFilters} className="btn btn-outline btn-sm">
@@ -191,14 +191,10 @@ const LogList: React.FC = () => {
             </select>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Results Summary */}
-      <div className="results-summary">
-        <p>
-          Showing <strong>{filteredLogs.length}</strong> of <strong>{logs.length}</strong> logs
-        </p>
-      </div>
+      
 
       {/* Logs Table */}
       <div className="card">
@@ -265,6 +261,11 @@ const LogList: React.FC = () => {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="results-summary">
+        <p>
+          Showing <strong>{filteredLogs.length}</strong> of <strong>{logs.length}</strong> logs
+        </p>
       </div>
     </div>
   );

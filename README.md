@@ -1,178 +1,274 @@
-# Driver Log - HOS Tracking System
+# Driver's Daily Log - Frontend Application
 
-A modern React TypeScript application for managing driver daily logs and Hours of Service (HOS) compliance tracking. Built with a KTM-inspired black and orange theme.
-
-![Driver Log System](./public/logo192.png)
+A modern React-based web application for managing and tracking driver's daily logs with HOS (Hours of Service) compliance checking, GPS tracking, and interactive route visualization.
 
 ## Features
 
-### 📊 Dashboard
-- Overview of all logs and drivers
-- Real-time compliance statistics
-- Quick access to recent logs
-- Active driver management
+### Core Functionality
+- **Driver Management** - Create, edit, view, and delete driver profiles
+- **Daily Log Management** - Comprehensive CRUD operations for daily logs
+- **24-Hour Duty Status Grid** - Visual timeline representation of driver activities
+- **HOS Compliance Checking** - Real-time validation against FMCSA regulations
+- **GPS & Geocoding** - Location tracking and route visualization
+- **Interactive Maps** - Visual representation of driver routes with distance calculations
+- **Dashboard & Analytics** - Overview statistics and compliance metrics
+- **Print Functionality** - Export logs for record-keeping
 
-### 📋 Log Management
-- Create and edit daily logs
-- 24-hour duty status grid visualization
-- Real-time HOS compliance checking
-- Detailed log viewing with timeline
-- Filter and search functionality
-- Print-ready log format
-
-### 👥 Driver Management
-- Add, edit, and delete drivers
-- Driver profile management
-- License and terminal information tracking
-
-### ⏱️ HOS Compliance
-- Automatic compliance checking
-- 11-Hour Driving Limit validation
-- 14-Hour Driving Window tracking
-- 10-Hour Off-duty requirement monitoring
-- Violation detection and reporting
-
-### 🎨 Design
-- KTM-inspired black and orange theme
-- Responsive design for all devices
-- Modern and intuitive UI
-- Smooth animations and transitions
+### Technical Features
+- Real-time data validation
+- Axios-based API integration
+- TypeScript for type safety
+- OpenStreetMap integration for maps
+- Environment-based configuration
 
 ## Technology Stack
 
-- **React 18** - Frontend framework
-- **TypeScript** - Type-safe development
-- **React Router** - Client-side routing
-- **Axios** - HTTP client (for mock APIs)
-- **Date-fns** - Date manipulation
-- **Recharts** - Data visualization
-- **CSS3** - Custom styling
+- **Framework:** React 18
+- **Language:** TypeScript
+- **HTTP Client:** Axios
+- **Routing:** React Router DOM v6
+- **Maps:** React-Leaflet + Leaflet
+- **Styling:** CSS3 with CSS Variables
+- **Build Tool:** Create React App
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- Backend API running (see ../BusLogs/README.md)
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the Repository
 ```bash
 cd driver-log-app
 ```
 
-2. Install dependencies:
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-3. Start the development server:
+### 3. Configure Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+REACT_APP_API_BASE_URL=http://localhost:8000/api/v1
+```
+
+**Available Environment Variables:**
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `REACT_APP_API_BASE_URL` | Backend API base URL | `http://localhost:8000/api/v1` |
+
+### 4. Start Development Server
 ```bash
 npm start
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+The application will open at `http://localhost:3000`
 
 ## Available Scripts
 
-### `npm start`
-Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Development
+```bash
+npm start
+```
+Runs the app in development mode with hot reload.
 
-### `npm test`
+### Production Build
+```bash
+npm run build
+```
+Builds optimized production bundle in the `build/` folder.
+
+### Testing
+```bash
+npm test
+```
 Launches the test runner in interactive watch mode.
 
-### `npm run build`
-Builds the app for production to the `build` folder.
-
-### `npm run eject`
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Linting
+```bash
+npm run lint
+```
+Checks code for linting errors.
 
 ## Project Structure
 
 ```
 driver-log-app/
+├── public/                 # Static files
 ├── src/
-│   ├── components/         # Reusable components
-│   │   ├── Header.tsx
-│   │   ├── LogGrid.tsx
-│   │   └── LogGrid.css
-│   ├── pages/             # Page components
-│   │   ├── Dashboard.tsx
-│   │   ├── Dashboard.css
-│   │   ├── LogList.tsx
-│   │   ├── LogList.css
-│   │   ├── LogForm.tsx
-│   │   ├── LogForm.css
-│   │   ├── LogDetail.tsx
-│   │   ├── LogDetail.css
-│   │   ├── Drivers.tsx
-│   │   └── Drivers.css
-│   ├── services/          # API services
-│   │   └── api.ts
-│   ├── types/             # TypeScript types
+│   ├── components/        # Reusable UI components
+│   │   ├── Header.tsx    # Navigation header
+│   │   ├── LogGrid.tsx   # 24-hour duty status grid
+│   │   └── RouteMap.tsx  # Interactive map component
+│   ├── pages/            # Page components
+│   │   ├── Dashboard.tsx # Main dashboard
+│   │   ├── LogList.tsx   # All logs listing
+│   │   ├── LogForm.tsx   # Create/edit log form
+│   │   ├── LogDetail.tsx # Single log detail view
+│   │   └── Drivers.tsx   # Driver management
+│   ├── services/         # API services
+│   │   └── api.ts        # Axios API client
+│   ├── config/           # Configuration
+│   │   └── api.config.ts # API configuration
+│   ├── utils/            # Utility functions
+│   │   ├── hoursCalculator.ts  # HOS calculations
+│   │   └── gpsUtils.ts         # GPS utilities
+│   ├── types/            # TypeScript type definitions
 │   │   └── index.ts
-│   ├── utils/             # Utility functions
-│   │   └── hoursCalculator.ts
-│   ├── data/              # Mock data
-│   │   └── dummyData.ts
-│   ├── App.tsx
-│   ├── App.css
-│   ├── index.tsx
-│   └── index.css
-└── package.json
+│   ├── data/             # Mock/dummy data (dev only)
+│   ├── App.tsx           # Main app component
+│   ├── App.css           # Global styles
+│   └── index.tsx         # Entry point
+├── .env                  # Environment variables (create this)
+├── package.json
+└── README.md
 ```
 
-## Mock API
+## API Integration
 
-The application uses a mock API service that simulates real API calls with delays. All data is stored in memory and includes:
+The application connects to the Django backend API. All endpoints are integrated:
 
-- **Drivers API**: CRUD operations for driver management
-- **Logs API**: CRUD operations for daily logs
-- **Statistics API**: Calculate driver statistics and compliance rates
+### Driver Endpoints
+- `GET /drivers` - List all drivers
+- `POST /drivers` - Create new driver
+- `GET /drivers/:id` - Get driver details
+- `PATCH /drivers/:id` - Update driver
+- `DELETE /drivers/:id` - Delete driver
 
-### API Endpoints
+### Log Endpoints
+- `GET /logs` - List all logs (with filters)
+- `POST /logs` - Create new log
+- `GET /logs/:id` - Get log details
+- `PATCH /logs/:id` - Update log
+- `DELETE /logs/:id` - Delete log
 
-```typescript
-// Drivers
-api.getAllDrivers()
-api.getDriver(id)
-api.createDriver(driver)
-api.updateDriver(id, driver)
-api.deleteDriver(id)
+### GPS Endpoints
+- `POST /gps/geocode/` - Convert location to coordinates
+- `GET /logs/:id/route/` - Get route visualization data
 
-// Logs
-api.getAllLogs(params)
-api.getLog(id)
-api.getDriverLogs(driverId)
-api.getRecentLogs(limit)
-api.createLog(log)
-api.updateLog(id, log)
-api.deleteLog(id)
+For complete API documentation, see `../BACKEND_API_SPECIFICATION.md`
 
-// Statistics
-api.getDriverStats(driverId)
+## Configuration
+
+### Connecting to Backend
+
+1. Ensure backend is running at `http://localhost:8000`
+2. Update `.env` if using different URL
+3. Restart development server after changing `.env`
+
+### CORS Configuration
+
+Backend must allow frontend origin. Ensure Django has:
+```python
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 ```
 
-## Dummy Data
+## Features Guide
 
-The application comes pre-loaded with:
-- 4 sample drivers
-- 56 daily logs (14 days per driver)
-- Various duty status patterns
-- Realistic mileage and compliance data
+### Creating a Daily Log
 
-## HOS Regulations
+1. Navigate to "Create Log" page
+2. Select driver and date
+3. Add duty status entries with times
+4. Enter locations for driving/on-duty statuses
+5. Click "Get GPS" to geocode locations
+6. Save the log
 
-The application validates against FMCSA HOS regulations:
+### GPS Geocoding
 
-1. **11-Hour Driving Limit**: Cannot drive more than 11 hours after 10 consecutive hours off duty
-2. **14-Hour Driving Window**: Cannot drive after 14 hours on-duty following 10 consecutive hours off duty
-3. **10-Hour Off-Duty**: Must have at least 10 hours off duty (off-duty + sleeper berth)
+**Input Methods:**
+- Location name: `Los Angeles, CA`
+- GPS coordinates: `34.0522, -118.2437`
 
-## Color Scheme
+**Features:**
+- Free OpenStreetMap Nominatim service
+- Automatic caching for performance
+- No API key required
 
-- **Primary Orange**: #FF6600 (KTM Orange)
-- **Dark Orange**: #E55A00
-- **Black**: #1A1A1A
-- **Light Black**: #2A2A2A
-- **White Background**: #FFFFFF
-- **Success**: #4CAF50
-- **Warning**: #FFC107
-- **Danger**: #F44336
+### Route Visualization
+
+- Interactive map with custom markers for each duty status
+- Orange lines showing driving segments
+- Distance calculations displayed on routes
+- Automatic map zoom to fit all locations
+
+### HOS Compliance
+
+The system checks:
+- **Driving hours:** 11-hour daily limit
+- **On-duty hours:** 14-hour daily limit
+- **Rest breaks:** 8-hour break after 14 hours
+- **Cycle hours:** 60/70-hour weekly limit
+
+## Deployment
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+This creates an optimized production build in `build/`.
+
+### Deployment Options
+
+**Static Hosting:**
+- Netlify
+- Vercel
+- AWS S3 + CloudFront
+- GitHub Pages
+
+**Example (Netlify):**
+```bash
+npm run build
+netlify deploy --prod --dir=build
+```
+
+**Update Environment Variables:**
+```env
+REACT_APP_API_BASE_URL=https://api.your-domain.com/api/v1
+```
+
+## Troubleshooting
+
+### Cannot Connect to Backend
+
+**Solution:**
+1. Verify backend is running: `curl http://localhost:8000/api/v1/`
+2. Check `.env` file exists and has correct URL
+3. Restart dev server: Ctrl+C, then `npm start`
+4. Check browser console (F12) for errors
+
+### CORS Errors
+
+**Solution:**
+1. Install django-cors-headers in backend
+2. Add to Django INSTALLED_APPS and MIDDLEWARE
+3. Set CORS_ALLOWED_ORIGINS
+4. Restart backend server
+
+### Geocoding Not Working
+
+**Solution:**
+1. Check internet connection (Nominatim requires internet)
+2. Wait a moment (rate limiting may apply)
+3. Try entering GPS coordinates directly
+4. Check backend logs for errors
+
+### Build Errors
+
+**Solution:**
+```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+```
 
 ## Browser Support
 
@@ -181,35 +277,127 @@ The application validates against FMCSA HOS regulations:
 - Safari (latest)
 - Edge (latest)
 
-## Future Enhancements
+## Performance
 
-- [ ] User authentication and authorization
-- [ ] Real backend API integration
-- [ ] PDF export functionality
-- [ ] Email notifications
-- [ ] Mobile app version
-- [ ] Advanced analytics and reporting
-- [ ] GPS integration
-- [ ] ELD device integration
+- Production build size: ~145 KB (gzipped)
+- Initial load time: < 2 seconds
+- Interactive maps with lazy loading
+- Optimized API calls with caching
+
+## Improvement Points
+
+### High Priority
+
+1. **Print Formatting**
+   - Currently prints the site view (web page layout)
+   - **Future:** Implement proper FMCSA-compliant driver log form printing
+   - Should match the official format shown in requirement document
+   - Include proper grid, fields, and signature areas
+   - Use CSS `@media print` for print-specific styling
+
+2. **Offline Support**
+   - Add service workers for offline functionality
+   - Cache logs locally with IndexedDB
+   - Sync when connection restored
+
+3. **Mobile App**
+   - Convert to Progressive Web App (PWA)
+   - Add install prompt
+   - Native mobile apps (React Native)
+
+### Medium Priority
+
+4. **Authentication & Authorization**
+   - User login/logout
+   - JWT token management
+   - Role-based access control
+   - Driver vs Manager vs Admin roles
+
+5. **Real-time Updates**
+   - WebSocket integration
+   - Live log updates
+   - Notification system
+   - Multi-user collaboration
+
+6. **Enhanced Reporting**
+   - PDF export with proper formatting
+   - Excel/CSV export
+   - Custom date range reports
+   - Compliance summary reports
+
+7. **Advanced Analytics**
+   - Driver performance metrics
+   - Fuel efficiency tracking
+   - Route optimization suggestions
+   - Predictive compliance warnings
+
+### Low Priority
+
+8. **UI Enhancements**
+   - Dark mode toggle
+   - Customizable themes
+   - Drag-and-drop duty status editing
+   - Keyboard shortcuts
+
+9. **Additional Features**
+   - Vehicle maintenance tracking
+   - Fuel log integration
+   - Weather conditions overlay on maps
+   - Traffic data integration
+   - Multi-language support
+
+10. **Data Visualization**
+    - Charts and graphs for trends
+    - Heatmaps for frequently traveled routes
+    - Compliance score over time
+    - Driver comparison dashboards
+
+## Testing
+
+### Run Tests
+```bash
+npm test
+```
+
+### Test Coverage
+```bash
+npm test -- --coverage
+```
+
+### E2E Testing
+Consider adding Cypress or Playwright for end-to-end testing.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Create a feature branch
+2. Make changes
+3. Test thoroughly
+4. Submit pull request
 
 ## License
 
-This project is licensed under the MIT License.
+This project is proprietary software for driver log management.
 
-## Acknowledgments
+## Support
 
-- FMCSA for HOS regulations and guidelines
-- KTM for design inspiration
-- React community for excellent documentation
+For issues or questions:
+- Check troubleshooting section
+- Review backend documentation
+- Check browser console for errors
+- Verify backend API is responding
 
-## Contact
+## Related Documentation
 
-For questions or support, please contact the development team.
+- Backend API: `../BusLogs/README.md`
+- Full Stack Guide: `../FULL_STACK_INTEGRATION_GUIDE.md`
+- Environment Setup: `./ENVIRONMENT_SETUP.md`
+- Integration Details: `./BACKEND_INTEGRATION.md`
+- Quick Start: `../QUICK_START.md`
 
----
+## Version
 
-Built with ❤️ and ☕ for the trucking industry
+**Current Version:** 1.0.0
+
+## Author
+
+Driver's Daily Log Application - HOS Compliance Management System

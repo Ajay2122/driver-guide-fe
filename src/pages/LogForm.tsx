@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../services/api';
 import { Driver, DutyStatus, DailyLog } from '../types';
 import { calculateHoursFromStatuses, checkHOSCompliance } from '../utils/hoursCalculator';
-import { getCoordinatesFromInput } from '../services/geocoding';
 import LogGrid from '../components/LogGrid';
 import RouteMap from '../components/RouteMap';
 import './LogForm.css';
@@ -101,12 +100,20 @@ const LogForm: React.FC = () => {
     }
 
     try {
-      const coordinates = await getCoordinatesFromInput(status.location);
-      if (coordinates) {
+      // Try API first (will fallback to mock if backend not available)
+      const response = await api.geocodeLocation(status.location);
+      
+      if (response.data) {
         const newStatuses = [...dutyStatuses];
-        newStatuses[index] = { ...newStatuses[index], coordinates };
+        newStatuses[index] = { 
+          ...newStatuses[index], 
+          coordinates: {
+            lat: response.data.lat,
+            lng: response.data.lng
+          }
+        };
         setDutyStatuses(newStatuses);
-        alert(`✓ Location found: ${coordinates.lat.toFixed(4)}, ${coordinates.lng.toFixed(4)}`);
+        alert(`✓ Location found: ${response.data.lat.toFixed(4)}, ${response.data.lng.toFixed(4)}`);
       } else {
         alert('❌ Location not found. Please enter:\n- Location name (e.g., "Los Angeles")\n- GPS coordinates (e.g., "34.0522, -118.2437")');
       }
@@ -156,7 +163,7 @@ const LogForm: React.FC = () => {
         dutyStatuses,
         hours
       };
-
+      console.log(logData)
       if (id) {
         await api.updateLog(id, logData);
         alert('Log updated successfully!');
@@ -314,6 +321,15 @@ const LogForm: React.FC = () => {
                       <option value="driving">Driving</option>
                       <option value="on-duty">On-Duty (Not Driving)</option>
                     </select>
+                    {status.status=="on-duty" && <div className='form-new-input'>
+                      <input
+                          type="text"
+                          value={status.duty_summary || ''}
+                          onChange={(e) => handleDutyStatusChange(index, 'duty_summary', e.target.value)}
+                          className="form-input"
+                          placeholder="On-Duty summary"
+                        />
+                    </div>}
                   </div>
 
                   <div className="form-group">
