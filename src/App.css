@@ -259,7 +259,9 @@ body {
 .form-group {
   margin-bottom: 1.5rem;
 }
-
+.form-new-input{
+  margin-top: 4px;
+}
 .form-label {
   display: block;
   margin-bottom: 0.5rem;

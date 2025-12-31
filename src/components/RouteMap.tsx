@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, Tooltip } fro
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { DutyStatus, GPSCoordinate } from '../types';
-import { calculateDistance } from '../services/geocoding';
+import { calculateDistance } from '../utils/gpsUtils';
 import './RouteMap.css';
 
 // Fix for default marker icons in React-Leaflet
@@ -205,7 +205,7 @@ const RouteMap: React.FC<RouteMapProps> = ({ dutyStatuses, driverName, date }) =
                   )}
                   {status.status === 'on-duty' && (
                     <p className="status-note">
-                      (Vehicle inspection, loading, etc.)
+                      {`Summary:- ${status.duty_summary}` || '(Vehicle inspection, loading, etc.)'}
                     </p>
                   )}
                 </div>

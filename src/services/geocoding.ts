@@ -115,3 +115,50 @@ export const getCoordinatesFromInput = async (input: string): Promise<GPSCoordin
   return await geocodeLocation(input);
 };
 
+// Calculate route statistics from duty statuses (for mock/fallback)
+export const calculate_route_stats = (dutyStatuses: any[]): any => {
+  const stats: any = {
+    totalDrivingDistance: 0,
+    totalLocations: 0,
+    drivingLocations: 0,
+    drivingSegments: []
+  };
+
+  let lastKnownCoord: GPSCoordinate | null = null;
+  let lastKnownStatus: string | null = null;
+
+  dutyStatuses.forEach((status) => {
+    const coordinates = status.coordinates;
+    
+    if (coordinates && coordinates.lat && coordinates.lng) {
+      stats.totalLocations += 1;
+      
+      // If current status is DRIVING and we have a previous location
+      if (status.status === 'driving' && lastKnownCoord) {
+        const distance = calculateDistance(lastKnownCoord, coordinates);
+        stats.totalDrivingDistance += distance;
+        stats.drivingSegments.push({
+          start: lastKnownCoord,
+          startStatus: lastKnownStatus,
+          end: coordinates,
+          endStatus: 'driving',
+          distance
+        });
+      }
+      
+      if (status.status === 'driving') {
+        stats.drivingLocations += 1;
+      }
+      
+      // Update last known location (for ANY status type)
+      lastKnownCoord = coordinates;
+      lastKnownStatus = status.status;
+    }
+  });
+
+  stats.totalDrivingDistance = Math.round(stats.totalDrivingDistance * 10) / 10;
+  return stats;
+};
+
+// Export alias for backward compatibility
+export const geocode_location = geocodeLocation;

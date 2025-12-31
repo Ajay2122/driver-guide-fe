@@ -19,6 +19,7 @@ export interface DutyStatus {
   endHour: number;
   endMinute: number;
   location?: string;
+  duty_summary?:string;
   coordinates?: GPSCoordinate;
 }
 
